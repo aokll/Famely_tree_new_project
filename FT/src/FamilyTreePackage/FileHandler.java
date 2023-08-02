@@ -28,12 +28,6 @@ public class FileHandler implements Serializable,Writable {
             objectInputStream = new ObjectInputStream(fileInputStream);
 
             list = (List<Human>) objectInputStream.readObject();
-
-            for (Human h : list) {
-                System.out.println(h.getName() + " " + h.getBirthDate() + " " +
-                        h.getDeathDate()
-                        + " " + h.getGender());
-            }
         }
         return getList();
     }

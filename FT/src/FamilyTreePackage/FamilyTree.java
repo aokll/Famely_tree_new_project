@@ -11,15 +11,6 @@ public class FamilyTree<T extends Buffer<T>> implements Serializable,Iterable<T>
     public List<T> getTreeList() {
         return TreeList;
     }
-    public void print(){
-        for (T h : TreeList) {
-            System.out.println(h.getName() + " " + h.getBirthDate() + " " +
-                    h.getDeathDate()
-                    + " " + h.getGender());
-        }
-    }
-
-
     public void sortName(List<T> list){
         //list = ;
         Comparator<T> comparator = new Comparator<T>() {
