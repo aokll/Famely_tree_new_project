@@ -1,13 +1,11 @@
 package MVP.View.Console;
 
 import FamilyTreePackage.Gender;
-import FamilyTreePackage.Human;
 import MVP.Presenter.Present;
 
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class ConsoleFT implements IConsole{
     private Present present;
@@ -81,17 +79,17 @@ public class ConsoleFT implements IConsole{
         int d3 = scanner.nextInt();
         LocalDate localDate1 = LocalDate.of(y,m,d);
         System.out.println("укажите пол");
-        String pol = scanner.nextLine();
         Gender g = null;
+        String pol = scanner.next();
         if (pol.equals("M")){
-            g = Gender.MAN;
+           g = Gender.MAN;
         } else if (pol.equals("Ж")) {
-            g = Gender.WOMAN;
+           g = Gender.WOMAN;
         }
         present.AddNewHuman(name,localDate,localDate1,g);
     }
     void removeHuman(){
-        String name = scanner.nextLine();
+        String name = scanner.next();
         present.RemoveHuman(name);
     }
 }

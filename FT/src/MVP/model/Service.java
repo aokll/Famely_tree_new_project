@@ -45,23 +45,29 @@ public class Service<T> implements IService {
     @Override
     public void RemoveHuman(String name) {
         List<Human> list = familyTree.getTreeList();
-        for (Human h: list )  {
-            if (h.getName().equals(name)){
-                familyTree.getTreeList().remove(h);
-            }else {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getName().equals(name)) {
+                familyTree.getTreeList().remove(i);
+            } else {
                 System.out.println("такого человека не найдено");
                 break;
             }
         }
     }
 
-
     @Override
     public void Save() {
+        List<Human> recoveredDate = new ArrayList<>();
         List<Human> list = familyTree.getTreeList();
         try {
             fileHandler.save(list);
-            fileHandler.load();
+            recoveredDate = fileHandler.load();
+            for (Human h : recoveredDate) {
+                System.out.println(h.getName() + " " + h.getBirthDate() + " " +
+                        h.getDeathDate()
+                        + " " + h.getGender());
+            }
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
