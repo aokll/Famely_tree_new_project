@@ -2,7 +2,9 @@ package MVP.View.Console;
 
 import FamilyTreePackage.Gender;
 import MVP.Presenter.Present;
+import MVP.View.MenuClass;
 
+import java.awt.*;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -10,16 +12,27 @@ import java.util.Scanner;
 public class ConsoleFT implements IConsole{
     private Present present;
     private Scanner scanner;
+    private MenuClass menuClass;
+    boolean bool = true;
 
     public ConsoleFT() {
         present = new Present(this);
         this.scanner = new Scanner(System.in);
+        menuClass = new MenuClass(this);
     }
 
     @Override
     public void start() throws ParseException {
         System.out.println("привет");
-          label:
+
+        while (bool){
+            System.out.println(menuClass.menu());
+            Operation();
+        }
+    }
+    public void start1() throws ParseException {
+        System.out.println("привет");
+        label:
         while (true){
             System.out.println("0 - посмотреть дерево, " +
                     "1 - добавить в дерево, " +
@@ -29,15 +42,15 @@ public class ConsoleFT implements IConsole{
                     "5 - сортировать по дате рождения." +
                     "6 - выход");
             System.out.println("введите номер команды");
-          int x = scanner.nextInt();
+            int x = scanner.nextInt();
             if (x == 0){
                 present.PrintTree();
                 continue label;
             } else if (x == 1) {
-                addHuman();
+                AddHuman();
                 continue label;
             } else if (x == 2) {
-                removeHuman();
+                RemoveHuman();
                 continue label;
             } else if (x == 3) {
                 present.Save();
@@ -55,11 +68,21 @@ public class ConsoleFT implements IConsole{
         }
     }
 
+    public void Operation() throws ParseException {
+            String ch = scanner.nextLine();
+            int x = Integer.parseInt(ch);
+            menuClass.execute(x);
+    }
+    public void finish(){
+        scanner.close();
+        bool = false;
+    }
+
     @Override
     public void printAnswer(String answer) {
         System.out.println(answer);
     }
-    public void addHuman() throws ParseException {
+    public void AddHuman() throws ParseException {
         System.out.println("укажите имя");
         String name = scanner.next();
         System.out.println("укажите дату рождения");
@@ -77,19 +100,33 @@ public class ConsoleFT implements IConsole{
         int m2 = scanner.nextInt();
         System.out.println("день");
         int d3 = scanner.nextInt();
-        LocalDate localDate1 = LocalDate.of(y,m,d);
+        LocalDate localDate1 = LocalDate.of(y1,m2,d3);
         System.out.println("укажите пол");
-        Gender g = null;
-        String pol = scanner.next();
-        if (pol.equals("M")){
-           g = Gender.MAN;
-        } else if (pol.equals("Ж")) {
-           g = Gender.WOMAN;
-        }
-        present.AddNewHuman(name,localDate,localDate1,g);
+        Gender gender = Pol();
+        present.AddNewHuman(name,localDate,localDate1,gender);
     }
-    void removeHuman(){
+    public Gender Pol(){
+        String pol = scanner.next();
+        if (pol.equals("м")){
+            return Gender.MAN;
+        } else if (pol.equals("ж"))
+            return Gender.WOMAN;
+        return null;
+    }
+    public void RemoveHuman(){
         String name = scanner.next();
         present.RemoveHuman(name);
+    }
+    public void PrintTree(){
+        present.PrintTree();
+    }
+    public void Save(){
+        present.Save();
+    }
+    public void SortName(){
+        present.SortName();
+    }
+    public void SortBirthdate(){
+        present.SortBirthday();
     }
 }

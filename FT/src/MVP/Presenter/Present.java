@@ -2,7 +2,6 @@ package MVP.Presenter;
 
 import FamilyTreePackage.Gender;
 import MVP.View.Console.ConsoleFT;
-import MVP.model.IService;
 import MVP.model.Service;
 
 import java.text.ParseException;
