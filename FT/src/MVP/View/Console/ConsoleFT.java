@@ -24,7 +24,7 @@ public class ConsoleFT implements IConsole{
 
     @Override
     public void start() throws ParseException {
-        System.out.println("привет");
+        System.out.println("Привет");
 
         while (bool){
             System.out.println(menuClass.menu());
@@ -42,7 +42,7 @@ public class ConsoleFT implements IConsole{
         while (true) {
             String s = null;
             s = scanner.next();
-            Pattern c = Pattern.compile(".*[A-Za-zА-Яа-я<>,./|}{()!&?~].*");
+            Pattern c = Pattern.compile(".*[A-Za-zА-Яа-я<>,./|}{()!&?~Ёё`].*");
             boolean b = s.matches(c.pattern());
             if (b == true) {
                 System.out.println("Должны быть только числа, попробуйте еще раз");
