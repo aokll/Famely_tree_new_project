@@ -1,13 +1,14 @@
 package MVP.View.Console;
 
 import FamilyTreePackage.Gender;
+import FamilyTreePackage.Human;
 import MVP.Presenter.Present;
 import MVP.View.MenuClass;
 
-import java.awt.*;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class ConsoleFT implements IConsole{
     private Present present;
@@ -27,51 +28,34 @@ public class ConsoleFT implements IConsole{
 
         while (bool){
             System.out.println(menuClass.menu());
-            Operation();
+            operation();
         }
     }
-    public void start1() throws ParseException {
-        System.out.println("привет");
+    public void operation() throws ParseException {
+
+        menuClass.execute(err());
+
+    }
+    public Integer err(){
+        int x = 0;
         label:
-        while (true){
-            System.out.println("0 - посмотреть дерево, " +
-                    "1 - добавить в дерево, " +
-                    "2 - удалить из дерева, " +
-                    "3 - сохранить, " +
-                    "4 - сортировать по имени, " +
-                    "5 - сортировать по дате рождения." +
-                    "6 - выход");
-            System.out.println("введите номер команды");
-            int x = scanner.nextInt();
-            if (x == 0){
-                present.PrintTree();
+        while (true) {
+            String s = null;
+            s = scanner.next();
+            Pattern c = Pattern.compile(".*[A-Za-zА-Яа-я<>,./|}{()!&?~].*");
+            boolean b = s.matches(c.pattern());
+            if (b == true) {
+                System.out.println("Должны быть только числа, попробуйте еще раз");
                 continue label;
-            } else if (x == 1) {
-                AddHuman();
+            }
+            x = Integer.parseInt(s);
+            if (x <= 0 || x > menuClass.getCList().size()){
+                System.out.println("Таких вариантов нет, попробуйте еще раз");
                 continue label;
-            } else if (x == 2) {
-                RemoveHuman();
-                continue label;
-            } else if (x == 3) {
-                present.Save();
-                continue label;
-            } else if (x == 4) {
-                present.SortName();
-                continue label;
-            } else if (x == 5) {
-                present.SortBirthday();
-                continue label;
-            } else if (x == 6) {
-                break;
             }
             break;
         }
-    }
-
-    public void Operation() throws ParseException {
-            String ch = scanner.nextLine();
-            int x = Integer.parseInt(ch);
-            menuClass.execute(x);
+            return x;
     }
     public void finish(){
         scanner.close();
@@ -82,7 +66,7 @@ public class ConsoleFT implements IConsole{
     public void printAnswer(String answer) {
         System.out.println(answer);
     }
-    public void AddHuman() throws ParseException {
+    public void addHuman() throws ParseException {
         System.out.println("укажите имя");
         String name = scanner.next();
         System.out.println("укажите дату рождения");
@@ -102,10 +86,10 @@ public class ConsoleFT implements IConsole{
         int d3 = scanner.nextInt();
         LocalDate localDate1 = LocalDate.of(y1,m2,d3);
         System.out.println("укажите пол");
-        Gender gender = Pol();
-        present.AddNewHuman(name,localDate,localDate1,gender);
+        Gender gender = pol();
+        present.addNewHuman(name,localDate,localDate1,gender);
     }
-    public Gender Pol(){
+    public Gender pol(){
         String pol = scanner.next();
         if (pol.equals("м")){
             return Gender.MAN;
@@ -113,20 +97,32 @@ public class ConsoleFT implements IConsole{
             return Gender.WOMAN;
         return null;
     }
-    public void RemoveHuman(){
+    public void removeHuman(){
+        System.out.println("Введите имя человека которого хотите удалить");
         String name = scanner.next();
-        present.RemoveHuman(name);
+        present.removeHuman(name);
     }
-    public void PrintTree(){
-        present.PrintTree();
+    public void printTree(){
+        present.printTree();
     }
-    public void Save(){
-        present.Save();
+    public void save(){
+        present.save();
     }
-    public void SortName(){
-        present.SortName();
+    public void load(){
+
+        for (Human h : present.load()) {
+            System.out.println(h.getName() + " " + h.getBirthDate() + " " +
+                    h.getDeathDate()
+                    + " " + h.getGender());
+        }
     }
-    public void SortBirthdate(){
-        present.SortBirthday();
+    public void sortName(){
+        present.sortName();
+    }
+    public void sortBirthdate(){
+        present.sortBirthday();
+    }
+    public void clearTree() {
+        present.clearTree();
     }
 }

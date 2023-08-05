@@ -12,6 +12,6 @@ public class AddHuman extends CommandClass{
 
     @Override
     public void execute() throws ParseException {
-        super.getConsole().AddHuman();
+        super.getConsole().addHuman();
     }
 }

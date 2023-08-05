@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Service<T> implements IService {
+public class Service implements IService {
     private FamilyTree familyTree;
     private FileHandler fileHandler;
 
@@ -19,8 +19,7 @@ public class Service<T> implements IService {
         fileHandler = new FileHandler();
     }
 
-    @Override
-       public void PrintTree(){
+    public void printTree(){
         List<Human> list = familyTree.getTreeList();
         if (familyTree.getTreeList().isEmpty()){
             System.out.println("пусто");
@@ -33,7 +32,7 @@ public class Service<T> implements IService {
     }
 
     @Override
-    public void AddNewHuman(String name, LocalDate birthdate, LocalDate deathDate, Gender gender) throws ParseException {
+    public void addNewHuman(String name, LocalDate birthdate, LocalDate deathDate, Gender gender) throws ParseException {
         List<Human> list = new ArrayList<>();
         list.add(new Human(name,birthdate,deathDate,gender));
 
@@ -43,7 +42,7 @@ public class Service<T> implements IService {
     }
 
     @Override
-    public void RemoveHuman(String name) {
+    public void removeHuman(String name) {
         List<Human> list = familyTree.getTreeList();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getName().equals(name)) {
@@ -56,31 +55,43 @@ public class Service<T> implements IService {
     }
 
     @Override
-    public void Save() {
-        List<Human> recoveredDate = new ArrayList<>();
+    public void save() {
         List<Human> list = familyTree.getTreeList();
         try {
             fileHandler.save(list);
-            recoveredDate = fileHandler.load();
-            for (Human h : recoveredDate) {
-                System.out.println(h.getName() + " " + h.getBirthDate() + " " +
-                        h.getDeathDate()
-                        + " " + h.getGender());
-            }
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public List<Human> load() {
+        List<Human> recoveredDate = new ArrayList<>();
+        try {
+            recoveredDate = fileHandler.load();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        for (Human h : recoveredDate) {
+            familyTree.getTreeList().add(h);
+        }
+        return recoveredDate;
+    }
+
+
 
     @Override
-    public void SortName() {
+    public void sortName() {
         familyTree.sortName(familyTree.getTreeList());
     }
 
     @Override
-    public void SortBirthday() {
+    public void sortBirthday() {
         familyTree.sortBirthday(familyTree.getTreeList());
+    }
+
+    @Override
+    public void clearTree() {
+        familyTree.getTreeList().clear();
     }
 }
 

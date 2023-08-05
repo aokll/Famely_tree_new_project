@@ -11,6 +11,6 @@ public class RemoveHuman extends CommandClass{
 
     @Override
     public void execute() throws ParseException {
-        super.getConsole().RemoveHuman();
+        super.getConsole().removeHuman();
     }
 }

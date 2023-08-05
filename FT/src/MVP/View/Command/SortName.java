@@ -11,6 +11,6 @@ public class SortName extends CommandClass{
 
     @Override
     public void execute() throws ParseException {
-        super.getConsole().SortName();
+        super.getConsole().sortName();
     }
 }

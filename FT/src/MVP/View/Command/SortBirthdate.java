@@ -11,6 +11,6 @@ public class SortBirthdate extends CommandClass{
 
     @Override
     public void execute() throws ParseException {
-        super.getConsole().SortBirthdate();
+        super.getConsole().sortBirthdate();
     }
 }

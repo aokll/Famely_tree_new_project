@@ -11,6 +11,6 @@ public class PrintTree extends CommandClass{
 
     @Override
     public void execute() throws ParseException {
-        super.getConsole().PrintTree();
+        super.getConsole().printTree();
     }
 }

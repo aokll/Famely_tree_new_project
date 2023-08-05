@@ -16,19 +16,25 @@ public class MenuClass {
         CList.add(new AddHuman(consoleFT));
         CList.add(new RemoveHuman(consoleFT));
         CList.add(new Save(consoleFT));
+        CList.add(new Load(consoleFT));
         CList.add(new SortName(consoleFT));
         CList.add(new SortBirthdate(consoleFT));
+        CList.add(new ClearTree(consoleFT));
         CList.add(new Finish(consoleFT));
     }
     public String menu(){
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < CList.size(); i++) {
-            stringBuilder.append(i).append(". ").append(CList.get(i).getDiscript()).append("\n");
+            stringBuilder.append(i+1).append(". ").append(CList.get(i).getDiscript()).append("\n");
         }
         return stringBuilder.toString();
     }
     public void execute(int numComm) throws ParseException {
-        CommandClass commandClass = CList.get(numComm);
+        CommandClass commandClass = CList.get(numComm - 1);
         commandClass.execute();
+    }
+
+    public List<CommandClass> getCList() {
+        return CList;
     }
 }

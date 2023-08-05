@@ -6,11 +6,11 @@ import java.text.ParseException;
 
 public class Save extends CommandClass{
     public Save(ConsoleFT console) {
-        super("Сохранить", console);
+        super("Сохранить в файл", console);
     }
 
     @Override
     public void execute() throws ParseException {
-        super.getConsole().Save();
+        super.getConsole().save();
     }
 }

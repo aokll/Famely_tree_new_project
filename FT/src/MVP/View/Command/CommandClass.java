@@ -20,7 +20,5 @@ public abstract class CommandClass{
     public String getDiscript() {
         return discript;
     }
-    public void execute() throws ParseException {
-
-    }
+    public abstract void execute() throws ParseException;
 }
