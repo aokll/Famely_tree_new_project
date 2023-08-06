@@ -14,7 +14,7 @@ public class ConsoleFT implements IConsole{
     private Present present;
     private Scanner scanner;
     private MenuClass menuClass;
-    boolean bool = true;
+    boolean flag = true;
 
     public ConsoleFT() {
         present = new Present(this);
@@ -26,40 +26,40 @@ public class ConsoleFT implements IConsole{
     public void start() throws ParseException {
         System.out.println("Привет");
 
-        while (bool){
+        while (flag){
             System.out.println(menuClass.menu());
             operation();
         }
     }
     public void operation() throws ParseException {
 
-        menuClass.execute(err());
+        menuClass.execute(tryingOutACommand());
 
     }
-    public Integer err(){
-        int x = 0;
+    public Integer tryingOutACommand(){
+        int commandTestValue = 0;
         label:
         while (true) {
-            String s = null;
-            s = scanner.next();
+            String checkValueForOtherCharacters = null;
+            checkValueForOtherCharacters = scanner.next();
             Pattern c = Pattern.compile(".*[A-Za-zА-Яа-я<>,./|}{()!&?~Ёё`].*");
-            boolean b = s.matches(c.pattern());
-            if (b == true) {
+            boolean b = checkValueForOtherCharacters.matches(c.pattern());
+            if (b) {
                 System.out.println("Должны быть только числа, попробуйте еще раз");
                 continue label;
             }
-            x = Integer.parseInt(s);
-            if (x <= 0 || x > menuClass.getCList().size()){
+            commandTestValue = Integer.parseInt(checkValueForOtherCharacters);
+            if (commandTestValue <= 0 || commandTestValue > menuClass.getListOfCommands().size()){
                 System.out.println("Таких вариантов нет, попробуйте еще раз");
                 continue label;
             }
             break;
         }
-            return x;
+            return commandTestValue;
     }
     public void finish(){
         scanner.close();
-        bool = false;
+        flag = false;
     }
 
     @Override
@@ -71,29 +71,29 @@ public class ConsoleFT implements IConsole{
         String name = scanner.next();
         System.out.println("укажите дату рождения");
         System.out.println("год");
-        int y = scanner.nextInt();
+        int yearOfBirth = scanner.nextInt();
         System.out.println("месяц");
-        int m = scanner.nextInt();
+        int birthMonth = scanner.nextInt();
         System.out.println("день");
-        int d = scanner.nextInt();
-        LocalDate localDate = LocalDate.of(y,m,d);
+        int dayOfBirth = scanner.nextInt();
+        LocalDate localDate = LocalDate.of(yearOfBirth, birthMonth, dayOfBirth);
         System.out.println("укажите дату смерти");
         System.out.println("год");
-        int y1 = scanner.nextInt();
+        int yearOfDeath = scanner.nextInt();
         System.out.println("месяц");
-        int m2 = scanner.nextInt();
+        int deathMonth = scanner.nextInt();
         System.out.println("день");
-        int d3 = scanner.nextInt();
-        LocalDate localDate1 = LocalDate.of(y1,m2,d3);
+        int dayOfDeath = scanner.nextInt();
+        LocalDate localDate1 = LocalDate.of(yearOfDeath, deathMonth, dayOfDeath);
         System.out.println("укажите пол");
-        Gender gender = pol();
+        Gender gender = gender();
         present.addNewHuman(name,localDate,localDate1,gender);
     }
-    public Gender pol(){
-        String pol = scanner.next();
-        if (pol.equals("м")){
+    public Gender gender(){
+        String gender = scanner.next();
+        if (gender.equals("м")){
             return Gender.MAN;
-        } else if (pol.equals("ж"))
+        } else if (gender.equals("ж"))
             return Gender.WOMAN;
         return null;
     }

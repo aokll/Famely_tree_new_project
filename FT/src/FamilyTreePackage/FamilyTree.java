@@ -3,7 +3,7 @@ package FamilyTreePackage;
 import java.io.Serializable;
 import java.util.*;
 
-public class FamilyTree<T extends Buffer<T>> implements Serializable,Iterable<T> {
+public class FamilyTree<T extends Buffer<T>> implements Serializable {
     private List<T> TreeList;
     public FamilyTree(){
         TreeList = new ArrayList<>();
@@ -37,11 +37,6 @@ public class FamilyTree<T extends Buffer<T>> implements Serializable,Iterable<T>
             System.out.println(h.getBirthDate() + " " + h.getName() + " " + h.getDeathDate() + " " +
                     h.getGender());
         }
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        return null;
     }
 }
 

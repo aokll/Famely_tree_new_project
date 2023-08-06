@@ -8,33 +8,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuClass {
-    private List<CommandClass> CList;
+    private List<CommandClass> listOfCommands;
 
     public MenuClass(ConsoleFT consoleFT) {
-        CList = new ArrayList<>();
-        CList.add(new PrintTree(consoleFT));
-        CList.add(new AddHuman(consoleFT));
-        CList.add(new RemoveHuman(consoleFT));
-        CList.add(new Save(consoleFT));
-        CList.add(new Load(consoleFT));
-        CList.add(new SortName(consoleFT));
-        CList.add(new SortBirthdate(consoleFT));
-        CList.add(new ClearTree(consoleFT));
-        CList.add(new Finish(consoleFT));
+        listOfCommands = new ArrayList<>();
+        listOfCommands.add(new PrintTree(consoleFT));
+        listOfCommands.add(new AddHuman(consoleFT));
+        listOfCommands.add(new RemoveHuman(consoleFT));
+        listOfCommands.add(new Save(consoleFT));
+        listOfCommands.add(new Load(consoleFT));
+        listOfCommands.add(new SortName(consoleFT));
+        listOfCommands.add(new SortBirthdate(consoleFT));
+        listOfCommands.add(new ClearTree(consoleFT));
+        listOfCommands.add(new Finish(consoleFT));
     }
     public String menu(){
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < CList.size(); i++) {
-            stringBuilder.append(i+1).append(". ").append(CList.get(i).getDiscript()).append("\n");
+        StringBuilder commandStatusBar = new StringBuilder();
+        for (int i = 0; i < listOfCommands.size(); i++) {
+            commandStatusBar.append(i+1).append(". ").append(listOfCommands.get(i).getDiscript()).append("\n");
         }
-        return stringBuilder.toString();
+        return commandStatusBar.toString();
     }
-    public void execute(int numComm) throws ParseException {
-        CommandClass commandClass = CList.get(numComm - 1);
+    public void execute(int numberOfTheCommand) throws ParseException {
+        CommandClass commandClass = listOfCommands.get(numberOfTheCommand - 1);
         commandClass.execute();
     }
 
-    public List<CommandClass> getCList() {
-        return CList;
+    public List<CommandClass> getListOfCommands() {
+        return listOfCommands;
     }
 }

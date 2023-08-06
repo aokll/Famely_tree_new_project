@@ -48,7 +48,7 @@ public class Service implements IService {
             if (list.get(i).getName().equals(name)) {
                 familyTree.getTreeList().remove(i);
             } else {
-                System.out.println("такого человека не найдено");
+                System.out.println("Такого человека не найдено");
                 break;
             }
         }
