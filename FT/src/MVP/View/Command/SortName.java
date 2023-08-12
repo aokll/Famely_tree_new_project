@@ -6,7 +6,7 @@ import java.text.ParseException;
 
 public class SortName extends CommandClass{
     public SortName(ConsoleFT console) {
-        super("Отсортировать по имени", console);
+        super("Отсортировать базу данных ледей по имени", console);
     }
 
     @Override

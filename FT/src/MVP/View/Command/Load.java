@@ -7,7 +7,7 @@ import java.text.ParseException;
 public class Load  extends CommandClass{
 
     public Load(ConsoleFT console) {
-        super("Загрузить сохраненные данные из файла в дерево и вывести их в консоль", console);
+        super("Загрузить сохраненные данные из файла, и вывести их в консоль", console);
     }
 
     @Override

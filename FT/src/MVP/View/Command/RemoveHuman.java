@@ -6,7 +6,7 @@ import java.text.ParseException;
 
 public class RemoveHuman extends CommandClass{
     public RemoveHuman(ConsoleFT console) {
-        super("Удалить человека из дерева", console);
+        super("Удалить человека из базы данных", console);
     }
 
     @Override

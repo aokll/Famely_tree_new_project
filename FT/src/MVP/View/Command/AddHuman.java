@@ -7,7 +7,7 @@ import java.text.ParseException;
 public class AddHuman extends CommandClass{
     public AddHuman(ConsoleFT console) {
 
-        super("Добавить человека", console);
+        super("Добавить человека в базу данных", console);
     }
 
     @Override

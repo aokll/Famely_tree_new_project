@@ -10,12 +10,14 @@ public class Human implements Buffer, Serializable {
 
     private LocalDate deathDate;
     private Gender gender;
+    private int id;
 
-    public Human(String name, LocalDate birthday, LocalDate deathDate, Gender gender) throws ParseException {
+    public Human(String name, LocalDate birthday, LocalDate deathDate, Gender gender,int id) throws ParseException {
         this.name = name;
         this.birthday = birthday;
         this.deathDate = deathDate;
         this.gender = gender;
+        this.id = id;
     }
 
     public String getName() {
@@ -32,5 +34,10 @@ public class Human implements Buffer, Serializable {
 
     public Gender getGender() {
         return gender;
+    }
+
+    @Override
+    public int getID() {
+        return id;
     }
 }

@@ -6,7 +6,7 @@ import java.text.ParseException;
 
 public class Save extends CommandClass{
     public Save(ConsoleFT console) {
-        super("Сохранить в файл", console);
+        super("Сохранить базу данных людей в файл", console);
     }
 
     @Override

@@ -4,15 +4,23 @@ import java.io.Serializable;
 import java.util.*;
 
 public class FamilyTree<T extends Buffer<T>> implements Serializable {
-    private List<T> TreeList;
+    private List<T> dataBase;
+    private List<T> linkList;
+
+
     public FamilyTree(){
-        TreeList = new ArrayList<>();
+        dataBase = new ArrayList<>();
+        linkList = new ArrayList<>();
     }
-    public List<T> getTreeList() {
-        return TreeList;
+    public List<T> getLinkList() {
+        return linkList;
     }
-    public void sortName(List<T> list){
-        //list = ;
+    public List<T> getDataBase() {
+        return dataBase;
+    }
+
+    public List<T> sortName(List<T> list){
+        List<T> list1 = new ArrayList<>();
         Comparator<T> comparator = new Comparator<T>() {
             @Override
             public int compare(T o1, T o2) {
@@ -21,11 +29,12 @@ public class FamilyTree<T extends Buffer<T>> implements Serializable {
         };
         Collections.sort(list,comparator);
         for (T h : list) {
-            System.out.println(h.getName() + " " + h.getBirthDate() + " " + h.getDeathDate() + " " +
-                    h.getGender());
+            list1.add(h);
         }
+        return list1;
     }
-    public void sortBirthday(List<T> list){
+    public List<T> sortBirthday(List<T> list){
+        List<T> list1 = new ArrayList<>();
         Comparator<T> comparator = new Comparator<T>() {
             @Override
             public int compare(T o1, T o2) {
@@ -34,9 +43,23 @@ public class FamilyTree<T extends Buffer<T>> implements Serializable {
         };
         Collections.sort(list,comparator);
         for (T h : list) {
-            System.out.println(h.getBirthDate() + " " + h.getName() + " " + h.getDeathDate() + " " +
-                    h.getGender());
+            list1.add(h);
         }
+        return list1;
+    }
+    public List<T> sortID(List<T> list){
+        List<T> list1 = new ArrayList<>();
+        Comparator<T> comparator = new Comparator<T>() {
+            @Override
+            public int compare(T o1, T o2) {
+                return Integer.compare(o1.getID(),o2.getID());
+            }
+        };
+        Collections.sort(list,comparator);
+        for (T h : list) {
+            list1.add(h);
+        }
+        return list1;
     }
 }
 

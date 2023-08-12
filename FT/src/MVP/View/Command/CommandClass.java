@@ -3,6 +3,7 @@ package MVP.View.Command;
 import MVP.View.Console.ConsoleFT;
 
 import java.io.Console;
+import java.io.IOException;
 import java.text.ParseException;
 
 public abstract class CommandClass{
@@ -20,5 +21,5 @@ public abstract class CommandClass{
     public String getDiscript() {
         return discript;
     }
-    public abstract void execute() throws ParseException;
+    public abstract void execute() throws ParseException, IOException;
 }

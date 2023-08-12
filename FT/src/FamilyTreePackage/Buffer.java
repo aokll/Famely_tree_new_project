@@ -10,5 +10,5 @@ public interface Buffer<T> {
     LocalDate getDeathDate();
 
     Gender getGender();
-
+    int getID();
 }

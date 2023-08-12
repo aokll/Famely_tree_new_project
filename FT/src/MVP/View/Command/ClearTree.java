@@ -7,7 +7,7 @@ import java.text.ParseException;
 public class ClearTree extends CommandClass{
 
     public ClearTree(ConsoleFT console) {
-        super("Очистить все дерево", console);
+        super("Очистить список связей", console);
     }
 
     @Override

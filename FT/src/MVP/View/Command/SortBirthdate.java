@@ -6,7 +6,7 @@ import java.text.ParseException;
 
 public class SortBirthdate extends CommandClass{
     public SortBirthdate(ConsoleFT console) {
-        super("Отсортировать по дате рождения", console);
+        super("Отсортировать базу данных ледей по дате рождения", console);
     }
 
     @Override
